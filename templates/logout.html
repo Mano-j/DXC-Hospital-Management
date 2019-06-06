@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <style>
+        .cd-main-content{
+            padding-left: 20%;
+            padding-top: 10% !important;
+        }
+
+        </style>
+    </head>
+    
+    <body>
+        {% include 'navBar.html' %}
+        
+        <main class="cd-main-content">
+                <!-- main content here -->		
+                <h2>You have been Logged Out!</h2>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        <a href="{% url 'homepage:index' %}">Go Back to Home.</a>
+                    </small>
+
+                </div>
+        </main>
+        
+    </body>
+
+
+</html>

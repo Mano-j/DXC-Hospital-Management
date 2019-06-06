@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'> -->
+
+            {% block style %}
+
+            {% endblock %}
+    </head>
+    
+    <body>
+        {% include 'navBar.html' %}
+        {% block baseBody %}
+        <main class="cd-main-content">
+                <!-- main content here -->		
+                <h1>Hello</h1>
+        </main>
+        {% endblock %}
+        
+    </body>
+
+
+</html>

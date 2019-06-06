@@ -1,0 +1,138 @@
+{% extends "../home.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block baseBody %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<style>
+    body{                
+        background-image: url("/static/images/appointment.jpg") !important;
+        height: 100%; 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        }
+
+    #patient{
+        position: absolute;
+        top: 15%;
+        left: 60%;
+        width: 30%;
+        border: solid 2px white;
+        border-radius: 10px;
+        padding: 30px;
+        background: rgb(1, 1, 1); /* Fallback color */
+        background: rgba(1, 1, 1, 0.5); /* Black background with 0.5 opacity */
+        color: #f1f1f1;
+        box-shadow: 0 0 50px black;
+    }
+        
+    .doctor{
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        width: 30%;
+        border: solid 2px white;
+        border-radius: 10px;
+        padding: 20px;
+        background: rgb(1, 1, 1); /* Fallback color */
+        background: rgba(1, 1, 1, 0.5); /* Black background with 0.5 opacity */
+        color: #f1f1f1 !important;
+        box-shadow: 0 0 50px black;
+    }
+    
+    #redCross{
+        position: absolute;
+        top: 55%;
+        left: 40%;
+        -webkit-filter: drop-shadow(5px 5px 5px #222);
+        filter: drop-shadow(5px 5px 5px #222);
+
+    }
+
+    #book{
+        position: absolute;
+        top: 20%;
+        left: 15%;
+
+        text-align: center;
+        text-transform: uppercase;
+        color: rgb(44, 85, 161);
+        font-family: "Segoe UI",Arial,sans-serif;
+        font-weight: 700;
+    }
+
+    p{
+        font-size: 155%;
+    }
+
+    .available{
+            position: absolute;
+            background-color: rgba(1, 201, 18, 0.966);
+            border-radius: 10%;
+            padding: 1%;
+        }
+
+        .busy{
+            position: absolute;
+            background-color: rgba(201, 31, 1, 0.829);
+            border-radius: 10%;
+            padding: 1%;
+            
+        }
+
+
+</style>
+
+                    <h1 id="book">Book Your appointment with:</h1>
+                    <div class="doctor">
+                    <h2 style="font-size: 450%;">Dr. {{doctor.doctor_name}}</h2>
+
+                    {% if doctor.doctor_availability %} 
+                        <span class="available">Available</span>
+                    {% else %}
+                        <span class="busy">Busy</span>
+                    {% endif %}<br><br>
+
+                    <p>Specialisation: {{doctor.doctor_specialisation}}</p>
+                    <p>Timings: {{doctor.doctor_shift_slot1_from}} - {{doctor.doctor_shift_slot1_to}} & {{doctor.doctor_shift_slot2_from}} - {{doctor.doctor_shift_slot2_to}}</p> 
+                    </div>
+
+                    <div id="redCross"><img src="../../static/images/redcross.png" alt="+" style="width: 150%; height: 150%;"></div>
+                    
+                    {% block patient %}
+                        {% if doctor.doctor_availability %}
+
+                        <div id="patient">
+                            <div>
+                                <form method="POST" class="post-form" id="patientForm">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <button type="submit" class="btn btn-primary" >Save</button>
+                                    <input type="button" class="btn btn-primary" onclick="this.form.reset();" value="Reset">
+                                </form>
+                            </div>
+                        </div>
+
+
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            
+    
+
+
+    <script>
+
+            function submitForm() {
+                
+                var frm = document.getElementsById('patientForm');
+                frm.submit(); 
+                frm.reset();  
+                return false; 
+            }
+
+    </script>
+{% endblock %}

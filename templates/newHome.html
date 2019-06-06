@@ -1,0 +1,172 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
+    {% include 'navBar.html' %}
+
+    <style>
+
+    body{                
+        background-image: url("/static/images/patientRecord.png") !important;
+        height: 100%; 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        }
+
+        #patient{
+            position: absolute;
+            top: 15%;
+            left: 10%;
+            width: 35%;
+            border: solid 2px white;
+            border-radius: 10px;
+            padding: 30px;
+            background: rgb(1, 1, 1); /* Fallback color */
+            background: rgba(1, 1, 1, 0.5); /* Black background with 0.5 opacity */
+            color: #f1f1f1;
+            box-shadow: 0 0 50px black;
+        }
+
+        #doctorBox{
+            position: absolute;
+            top: 15%;
+            left: 55%;
+            width: 40%;
+            border: solid 2px white;
+            border-radius: 10px;
+            padding: 20px;
+            background: rgb(1, 1, 1); /* Fallback color */
+            background: rgba(1, 1, 1, 0.5); /* Black background with 0.5 opacity */
+            color: #f1f1f1 !important;
+            box-shadow: 0 0 50px black;
+        }
+
+
+        .specialisation { 
+            position: absolute;
+            right: 30%;
+            background-color: rgba(255,255,0,0.3);
+            border-radius: 10%;
+            padding: 1%;
+            color: rgb(253, 253, 253); 
+            display: inline;
+            
+        }
+
+        a:hover{
+            text-decoration: none;
+        }
+
+        .available{
+            position: absolute;
+            right: 0;
+            background-color: rgba(1, 201, 18, 0.966);
+            border-radius: 10%;
+            padding: 1%;
+        }
+
+        .busy{
+            position: absolute;
+            right: 0;
+            background-color: rgba(201, 31, 1, 0.829);
+            border-radius: 10%;
+            padding: 1%;
+            
+        }
+
+        #assignmentDetails{
+
+            position: absolute;
+            top: 75%;
+            left: 55%;
+            width: 40%;
+            border: solid 2px white;
+            border-radius: 10px;
+            padding: 20px;
+            background: rgb(1, 1, 1); /* Fallback color */
+            background: rgba(1, 1, 1, 0.5); /* Black background with 0.5 opacity */
+            color: #f1f1f1 !important;
+            box-shadow: 0 0 50px black;
+
+        }
+    </style>
+
+
+</head>
+<body>
+
+
+    <div id="patient">
+        <div class="form-group">
+                <form method="POST" class="post-form" id="patientForm">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <input type="button" class="btn btn-primary" onclick="this.form.reset();" value="Reset">
+                </form>
+        </div>
+
+    </div>
+
+    <div id="doctorBox">
+        
+        
+        <h2 style="padding-left: 15px;">Our Doctors</h2><br><br>
+        {% if doctor_list %}
+        <ul style="padding-top: 10px; padding-bottom: 10px">
+            {% for doctor in doctor_list %}
+                <a href="{% url 'homepage:doctorDetails' doctor.id %}" style="color: #f1f1f1;">
+                    <li>
+                        <div class="col-md-10">
+                            Dr. {{doctor.doctor_name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="specialisation">{{doctor.doctor_specialisation}}</span> 
+                        
+                        
+                            <span class="availability">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;
+                                {% if doctor.doctor_availability %} 
+
+                                    <span class="available">Available</span>
+                                {% else %}
+                                    <span class="busy">Busy</span>
+                                {% endif %}
+                            </span>
+                        </div>
+                    <li>
+                </a>
+                <br><br>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    </div>
+
+    <div id="assignmentDetails">
+        Patients assignment Details:<br><br>
+        {% for item in assignmentDetails %}
+
+            {{item}} <br><br>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>
+

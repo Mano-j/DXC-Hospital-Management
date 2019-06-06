@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+        
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+            <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="/static/login/login.css">
+            {% include 'navBar.html' %}
+    
+
+            {% block style%}
+        <style>
+            body{                
+                background-image: url({{bg}}) !important;
+                height: 100%; 
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            #span{
+                background: url({{span_image}}) !important;
+            }
+        </style>
+
+            {% endblock %}
+
+    </head>
+
+    <body>
+        <h1>heyyy</h1>
+        
+        <!-- <main class="cd-main-content"> -->
+                <!-- main content here -->		
+                <h1>Hello</h1>
+
+                <section>
+                        <span id="span"></span>
+
+
+                        {% block user_type %}
+                        <h1>{{ user }} Login</h1>
+                        {% endblock %}
+                        
+                        <form method="POST">
+                            <br>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                          <!-- <input placeholder="User Name" type="text"></input>
+                          <input placeholder="Password" type="password"></input> -->
+                          <button type="submit">LOGIN</button>
+                        </form>
+                        
+                        <h2>
+                          <a id="forgotPwd" href="#">Forgot Credential? Contact Admin.</a>
+                        </h2><br>
+                </section>
+        
+        <!-- </main> -->
+
+        
+
+
+    </body>
+        
+
+</html>

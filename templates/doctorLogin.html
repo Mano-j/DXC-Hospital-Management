@@ -1,0 +1,21 @@
+{% extends "loginBase.html" %}
+
+{% block style %}
+
+<style>
+        body{                
+            background-image: url("/static/images/doctorRoom.jpg") !important;
+            height: 100%; 
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #span{
+            background: url("/static/images/doctor.jpg") !important;
+        }
+</style>
+
+{% endblock %}
+
+{% block user_type %}
+<h1>Doctor Login</h1><br>
+{% endblock %}
