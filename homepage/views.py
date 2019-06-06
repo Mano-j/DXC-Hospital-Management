@@ -3,8 +3,6 @@ from django.http import HttpResponseRedirect
 
 from .models import PatientDetails, DoctorDetails
 from .forms import postForm
-import operator
-import schedule
 import time
 import threading
 
