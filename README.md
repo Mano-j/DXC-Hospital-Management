@@ -73,11 +73,11 @@ You can find detailed tutorials for performing the integration of MySQL with Dja
 ## Features
 ### Homepage
 - The receptionist can add the patient details in the index page. 
-- The details of the patients assigned with doctor for the current session is shown in the index page. This is shown only for the current day as to look clean.
+- The details of the patients assigned with doctor for the current session is shown in the index page. This is shown only for the current day for a cleaner look.
 - These details are updated after the page is refreshed or another patient is submitted.
 
 ### Assigining Doctors (Automatic)
-- The background scheduling process schedules the patients to the doctors based in their availability. If the doctors are not available the are put into an waiting queue.
+- The background scheduling process schedules the patients to the doctors based on their availability. If the doctors are not available they are put into an waiting queue.
 - The patients in the queue are alloted doctors once a doctor finishes his scheduled appointment with the current patient he is handling.
 - The patients allotment is done with priority assigned to the patients based on their health status.
 - Depending on the type of the case (Emergency, Urgent, Normal) the patients in the queue are alloted doctors.
@@ -85,7 +85,7 @@ You can find detailed tutorials for performing the integration of MySQL with Dja
 
 ### Direct Doctor assignment (Manual)
 - The receptionist can assign a patient to a doctor of their preference based on their past experience with the doctor or from the word of a trusted friend.
-- This feature is also under development and as of now when patient details are submitted via this form it is fed into automatic scheduling background process.
+- This feature is currently under development and for now when patient details are submitted via this form it is fed into automatic scheduling background process.
 
 ### Doctor Login page
 - The doctors can login into their accounts and view the details of past and current patients. 
@@ -104,4 +104,4 @@ You can find detailed tutorials for performing the integration of MySQL with Dja
 
 ### Security
 - All passwords of user accounts are hashed using SHA256 and stored. Authentication works by comparing the stored hash with the generated hash from the entered password at the time of login.
-- Because of the passwords being stored only in their hashed format, user privacy is maintained as the admin also cannot see the password of other users. However, he can change them.
+- Because of the passwords being stored only in their hashed format, user privacy is maintained as the admin also cannot see the password of other users. However, the admin can change them.
