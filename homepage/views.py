@@ -40,7 +40,7 @@ def reduceTime():
 
 def assign():
     while True:
-        time.sleep(10)
+        time.sleep(5)
         patientList = PatientDetails.objects.all().filter(doctorDetails=None)
         
 
