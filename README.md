@@ -49,21 +49,21 @@ Please refer the following guides for installation of MySQL
 #### Steps to integrate MySQL with the Hospital Management application:
 
 1. Install the `mysqlclient` python package via pip.
-    ```
-    pip install mysqlclient
-    ```
+```
+pip install mysqlclient
+```
 2. Create a new database called `hospital` in MySQL.
-    ```
-    mysql> CREATE DATABASE hospital
-    ```
+```
+mysql> CREATE DATABASE hospital
+```
 3. Create a new user by running the following command.
-    ```
-    mysql> CREATE USER 'hospadmin'@'localhost' IDENTIFIED BY 'password';
-    ```
+```
+mysql> CREATE USER 'hospadmin'@'localhost' IDENTIFIED BY 'password';
+```
    Ensure you give`hospadmin` all privileges to the `hospital` database.
-   ```
-   mysql> GRANT ALL PRIVILEGES ON hospital TO 'hospadmin'@'localhost';
-   ```
+```
+mysql> GRANT ALL PRIVILEGES ON hospital TO 'hospadmin'@'localhost';
+```
 4. Now navigate to `settings.py` inside HospManagement directory in the project directory. There scroll to line 94 where you'll find the `DATABASES` section.
     Here, comment the first two lines inside the `default` block and uncomment the rest of the lines in it which specifies that the connection backend is MySQL, name of the db, username, password and the host url of your MySQL database.
     Note: Leave it as localhost if the MySQL database has been setup locally. In case it is set up in a remote server, please execute all the above steps in the remote server and replace `localhost` with the address to your remote MySQL server.
